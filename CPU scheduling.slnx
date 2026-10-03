@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="CPU scheduling/CPU scheduling.vcxproj" Id="a61cfed8-030b-48bb-a833-36e445ccab22" />
+</Solution>
