@@ -12,4 +12,4 @@ First (EDF) scheduling.
 
 Five processes will be used.  Here is a table:
 
-!()[
+!()[images/processes.png]
