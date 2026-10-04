@@ -10,7 +10,7 @@ time frame, an accident may occur.
 Three algorithms will be used to implement Real-Time Scheduling.  The algorithms are Rate Monotonic Scheduling (RMS), Deadline Monotonic Scheduling (DMS), and Earliest Deadline
 First (EDF) scheduling.  
 
-Five processes will be used:
+Five processes are used:
 
 | Process No. |  Execution Time |  Relative Deadline |  Period |
 |-------------|-----------------|--------------------|---------|
