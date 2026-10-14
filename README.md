@@ -1,37 +1,36 @@
 # Overview of Assignment
 
-This assignment required the student to modify a prebuilt Spring Boot Application.
-The application is a store that sells model rockets and parts.
+This assignment required the student to simulate CPU scheduling by implementing three real-time scheduling algorithms: Earliest Deadline First scheduling (EDF),
+Rate Monotonic Scheduling (RMS), and Deadline Monotonic Scheduling (DMS).
 
 ## Technology used:
 
-### Front End:
-HTML, CSS
-
-### Back End:
-Spring Boot 2.6.6, Java 21.0.11
+### Language:
+C++ 20 Standard
 
 ### IDE:
-IntelliJ IDEA 2026.1
+Visual Studio 2026
 
 ### OS:
 Windows 11 
 
-## How to Run the App (if IntelliJ is installed)
+## How to Run the Program (if Visual Studio is installed)
 1.  Copy the URL of this repository by clicking Code on the repository's homepage and, under Clone, select HTTPS, then click Copy URL to clipboard.
-2.  Open IntelliJ, and in the upper right, there is a button called Clone Repository; click it.
-3.  You will be prompted for the version control source, URL, and Directory.
-4.  For version control, select Git, then paste the copied URL into the field labeled URL.
-6.  Also, you will see a field labeled Directory.  Choose a name for the Project's folder.
+2.  Open Visual Studio, and on the right side of the window, there is a button called Clone a Repository; click it.
+3.  You will be prompted for the repository URL and Path.
+4.  Paste the copied URL into the field labeled URL.
+6.  In the field labeled Path, choose a name for the Project's folder.
 7.  Click Clone.  
-8.  After the project loads, click the green triangular-shaped button.  This is located at the top of the window near the center. This will start the application.
-9.  To view the application, open a browser and type http://localhost:8080 in the address bar, then press Enter.  The application will run here.
+8.  After the project loads, open the Solution Explorer (if it is not already open) by clicking View, then Solution Explorer.
+9.  Next to the project's name, click the expand icon to expose the folder titled Source Files.  Expand Source Files and open main.cpp.
+10. At the top of the window, you will see two green triangular-shaped buttons.  Click the one that is not solid green to run the program.
 
+# Overview
 
 CPU scheduling is a vital function of a computer's operating system.  It determines which process or task uses the CPU at a given time.  There are two types of scheduling: preemptive 
 and non-preemptive.  With non-preemptive scheduling, a process that is currently using the CPU cannot be interrupted.  The process has to reach completion before it can be removed
 from the CPU.  With preemptive scheduling, a process that is currently using the CPU can be interrupted by another process of higher priority.  In this case, the current process is removed, and
-the process that has higher priority is assigned to the CPU.  The process which was removed can be resumed after the completion of the interrupting process. 
+the process that has higher priority is assigned to the CPU.  The process that was removed can be resumed after the completion of the interrupting process. 
 
 The c++ program will simulate Real-Time-Scheduling.  This type of scheduling is generally preemptive and is used for time-critical systems.  These are systems in which a task has to complete its execution 
 before a deadline.  A real-world example of a time-critical system is the ABS on a car.  During a skid, the ABS must quickly send signals to certain hydraulic valves.  If this is not done within a certain
@@ -50,19 +49,21 @@ Five processes are used:
 | 3           |  5              |  13                |  30     |
 | 4           |  3              |  12                |  17     |
 
-Execution Time is the time needed for a process to complete its execution during each cycle.  Relative Deadline is the amount of time between a task's arrival at the CPU
-and its deadline.  Period is the time between the operating system's requests for the execution of a given process.
+## Terminology:
 
-Other Terminology:
+**Execution Time**: The time needed for a process to complete its execution during each cycle.  
+**Relative Deadline**: The amount of time between a task's arrival at the CPU and its deadline.  
+**Period**: The amount of time between the operating system's requests for the execution of a given process.\
+**Service time**: The total amount of time that a process is scheduled to run.\
+**Deadline**: The sum of the arrival time and the relative deadline.
 
-Service time: The total amount of time that a process is scheduled to run.\
-Deadline: The sum of the arrival time and the relative deadline.
+## Earliest Deadline First (EDF)
 
 First, Earliest Deadline First (EDF) scheduling will be used.  With this type of scheduling, the process that has the earliest deadline will be prioritized.
 At the start of the program (for each of the three algorithms), all processes arrive at the CPU simultaneously at a CPU time of 0 units.
 
-Results of EDF (printout to the console):
-
+Results of EDF (printout to console):
+ 
 **Process 0 starts at 0 units.**
 **Current deadline of process 0 is 8.**
 
@@ -132,6 +133,8 @@ Results of EDF (printout to the console):
 **Program complete at 70 units.**
 
 With EDF scheduling, all deadlines were met.  
+
+## Rate Monotonic Scheduling (RMS)
 
 Next, Rate Monotonic Scheduling (RMS) will be used.  With this type of scheduling, shorter periods have higher priority.
 
@@ -206,6 +209,8 @@ RMS results:
 **Program complete at 70 units.**
 
 With RMS, all deadlines were not met.  The processes are not schedulable with this algorithm.  
+
+## Deadline Monotonic Scheduling (DMS)
 
 Last, Deadline Monotonic Scheduling (DMS) will be used.  With DMS, tasks with the shortest relative deadlines are 
 given the highest priority.
