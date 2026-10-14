@@ -23,11 +23,11 @@ struct Process {
     Process(int processId, int processingTime, int relativeDeadline, int period, int deadline, int currentRunTime)
     {
         this->processId = processId;
-        this->relativeDeadline = relativeDeadline;
-        this->deadline = deadline;
-        this->period = period;
-        this->currentRunTime = currentRunTime;
         this->processingTime = processingTime;
+        this->relativeDeadline = relativeDeadline;
+        this->period = period;
+        this->deadline = deadline;
+        this->currentRunTime = currentRunTime; 
     }
 };
 
@@ -101,17 +101,17 @@ int main()
 
         if (!minHeap.empty())
         {
-            //Place the process that is at the top of the queue onto the main memory frame.
+            //Place the process that is at the top of the queue into main memory.
 
-            Process frame = minHeap.top();
+            Process process = minHeap.top();
             minHeap.pop();
 
             //Start of current Process
 
-            if (frame.currentRunTime == 0)
+            if (process.currentRunTime == 0)
             {
-                cout << "Process " << frame.processId << " starts at " << currTime - 1 << " units." << endl;
-                cout << "Current deadline of process " << frame.processId << " is " << frame.deadline << "." << endl << endl;
+                cout << "**Process " << process.processId << " starts at " << currTime - 1 << " units.**" << endl;
+                cout << "**Current deadline of process " << process.processId << " is " << process.deadline << ".**" << endl << endl;
             }
 
             //Combined run time of all processes, exit program when all processes are done running.
@@ -121,10 +121,10 @@ int main()
             /*If the process has reached the limit of its total run time, move on to the next process
               and do not place it back into the queue.*/
 
-            if (++serviceTimes[frame.processId] == serviceTime)
+            if (++serviceTimes[process.processId] == serviceTime)
             {
-                cout << "Process " << frame.processId << " has reached the limit of its run time at time " <<
-                    currTime << "." << endl << endl;
+                cout << "**Process " << process.processId << " has reached the limit of its run time at time " <<
+                    currTime << ".**" << endl << endl;
                 continue;
             }
 
@@ -132,41 +132,41 @@ int main()
               is pushed back into the heap but logically it is not (if it is of the highest prority it will end up
               back on the frame immediately). Structuring it this way just makes the code simpler.*/
 
-            if (++frame.currentRunTime < frame.processingTime)
-                minHeap.push(frame);
+            if (++process.currentRunTime < process.processingTime)
+                minHeap.push(process);
 
             //If a process done running in the short run.
 
-            if (frame.currentRunTime == frame.processingTime)
+            if (process.currentRunTime == process.processingTime)
             {
-                if (currTime > frame.deadline && deadlineMet[0] == true)
+                if (currTime > process.deadline && deadlineMet[0] == true)
                 {
                     //For print statement at end of program
 
                     deadlineMet[0] = false;
                     deadlineMet[1] = currTime;
-                    deadlineMet[2] = frame.processId;
-                    deadlineMet[3] = frame.deadline;
+                    deadlineMet[2] = process.processId;
+                    deadlineMet[3] = process.deadline;
                 }
 
-                cout << "Process " << frame.processId << " complete at " << currTime << " units." << endl << endl;
+                cout << "**Process " << process.processId << " complete at " << currTime << " units.**" << endl << endl;
             }
         }
     }
 
-    cout << "EDF Results:" << endl << endl;
-    cout << "Service time = " << serviceTime << " units per process." << endl << endl;
+    cout << "**EDF Results:**" << endl << endl;
+    cout << "**Service time = " << serviceTime << " units per process.**" << endl << endl;
 
     if (!deadlineMet[0])
     {
-        cout << "Schedule feasible from 0 to " << deadlineMet[3] << " units.  " <<
+        cout << "**Schedule feasible from 0 to " << deadlineMet[3] << " units.  " <<
             "Process " << deadlineMet[2] << " did not meet deadline of " << deadlineMet[3] << " units.  ";
-        cout << "Process " << deadlineMet[2] << " complete at " << deadlineMet[1] << " units." << endl << endl;
+        cout << "Process " << deadlineMet[2] << " complete at " << deadlineMet[1] << " units.**" << endl << endl;
     }
     else
-        cout << "CPU time took " << currTime << " units.  All deadlines met." << endl << endl;
+        cout << "**CPU time took " << currTime << " units.  All deadlines met.**" << endl << endl;
 
-    cout << "Program complete at " << currTime << " units.";
+    cout << "**Program complete at " << currTime << " units.**";
 
     file.close();
 
